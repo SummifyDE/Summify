@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schulstandort Eintrag</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Schule Standort Eintragen</h1>
+  </header>
+
+  <form id="school-form">
+    <input type="text" id="bundesland" placeholder="Bundesland" required />
+    <input type="text" id="ort" placeholder="Ort" required />
+    <input type="text" id="schule" placeholder="Schule" required />
+    <input type="text" id="fach" placeholder="Fach" required />
+    <input type="text" id="klasse" placeholder="Klasse" required />
+    <button type="submit">Speichern</button>
+  </form>
+
+  <div id="map"></div>
+</body>
+</html>
