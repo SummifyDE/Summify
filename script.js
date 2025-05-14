@@ -19,6 +19,41 @@ let marker = L.marker([51.1657, 10.4515], { draggable: true }).addTo(map);
 
 // Login überprüfen bei Seitenaufruf
 checkAuth();
+// Login-Formular-Handling
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    alert('Login fehlgeschlagen: ' + error.message);
+  } else {
+    checkAuth();
+  }
+});
+
+// Logout-Button
+logoutBtn.addEventListener('click', async () => {
+  await supabase.auth.signOut();
+  showLogin();
+});
+
+// UI wechseln
+function showLogin() {
+  document.getElementById('login-view').style.display = 'block';
+  document.getElementById('app-view').style.display = 'none';
+}
+
+function showApp() {
+  document.getElementById('login-view').style.display = 'none';
+  document.getElementById('app-view').style.display = 'block';
+}
+
 
 async function checkAuth() {
   const { data: { session } } = await supabase.auth.getSession();
