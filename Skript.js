@@ -1,34 +1,25 @@
-// Supabase Konfiguration
-const supabase = supabase.createClient(
-  'https://lyioruosnltgowlxluon.supabase.co', // Ersetze mit deiner Supabase URL
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI' // Ersetze mit deinem API Key
-);
+const SUPABASE_URL = 'https://lyioruosnltgowlxluon.supabase.co'; // DEINE Supabase URL
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI';               // DEIN anon key
 
-// Formular Eintrag speichern
-document.getElementById('school-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  
-  const bundesland = document.getElementById('bundesland').value;
-  const ort = document.getElementById('ort').value;
-  const schule = document.getElementById('schule').value;
-  const fach = document.getElementById('fach').value;
-  const klasse = document.getElementById('klasse').value;
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const { data, error } = await supabase
-    .from('schools')
-    .insert([{ bundesland, ort, schule, fach, klasse, lat: marker.getLatLng().lat, lng: marker.getLatLng().lng }]);
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (error) {
-    alert('Fehler beim Speichern: ' + error.message);
-  } else {
-    alert('Erfolgreich gespeichert!');
-  }
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    const messageEl = document.getElementById('message');
+    if (error) {
+        messageEl.textContent = error.message;
+    } else {
+        messageEl.style.color = 'green';
+        messageEl.textContent = 'Erfolgreich eingeloggt!';
+        console.log('Login erfolgreich:', data);
+    }
 });
-
-// Leaflet Karte
-const map = L.map('map').setView([51.1657, 10.4515], 6); // Deutschland Mitte
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap'
-}).addTo(map);
-
-let marker = L.marker([51.1657, 10.4515], { draggable: true }).addTo(map);
