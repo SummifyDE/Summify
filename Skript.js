@@ -1,7 +1,7 @@
 // Supabase Konfiguration
 const supabase = supabase.createClient(
-  'https://your-project.supabase.co', // Ersetze mit deiner Supabase URL
-  'public-anon-key' // Ersetze mit deinem API Key
+  'https://lyioruosnltgowlxluon.supabase.co', // Ersetze mit deiner Supabase URL
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI' // Ersetze mit deinem API Key
 );
 
 // Formular Eintrag speichern
