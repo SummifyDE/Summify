@@ -4,56 +4,59 @@ body {
   padding: 0;
   font-family: 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #007BFF 0%, #00c6ff 100%);
-  color: #003366;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: center;
 }
 
-/* Container im Glassmorphism-Stil */
+/* Haupt-Container */
 .container {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  padding: 2.5rem;
-  backdrop-filter: blur(15px);
+  padding: 3rem;
+  backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  text-align: center;
-  width: 320px;
-  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: fadeIn 0.6s ease-in-out;
+  width: 90%;
+  max-width: 400px;
 }
 
-/* Logo */
+/* Logo – deutlich größer */
 .logo {
-  width: 80px;
+  width: 120px;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Inputs */
-input {
+/* Alle Formularelemente */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Input + Select einheitlich mit weißem Hintergrund */
+input,
+select {
   width: 100%;
-  padding: 0.8rem;
-  margin: 0.5rem 0;
+  padding: 0.9rem;
   border: none;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: #ffffff;
+  color: #003366;
   font-size: 1rem;
   outline: none;
-  transition: background 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 input::placeholder {
-  color: #e0e0e0;
-}
-
-input:focus {
-  background: rgba(255, 255, 255, 0.3);
+  color: #666666;
 }
 
 /* Button */
@@ -61,13 +64,12 @@ button {
   background: #ffffff;
   color: #007BFF;
   border: none;
-  padding: 0.8rem 1.2rem;
+  padding: 0.9rem;
   border-radius: 25px;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
 }
 
 button:hover {
@@ -75,18 +77,26 @@ button:hover {
   color: #0056b3;
 }
 
-/* Nachricht */
+/* Rückmeldung (z. B. Fehlermeldung) */
 #message {
   margin-top: 1rem;
   font-weight: bold;
   font-size: 0.95rem;
 }
 
+/* Karte im Dashboard */
+.map img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
