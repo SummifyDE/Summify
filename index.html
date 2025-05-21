@@ -9,6 +9,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-sA+4DHH9G2s6hSR1iW0JzLPIrlxhe/j9UivkRF4wL8Q="
+  crossorigin=""
+/>
+
 </head>
 <body>
   <header>
@@ -24,6 +31,7 @@
       <button type="submit">Anmelden</button>
     </form>
   </div>
+<div id="map" style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px; display: none;"></div>
 
   <!-- App-Bereich, sichtbar nach Login -->
   <div id="app-view" style="display: none;">
@@ -66,13 +74,16 @@
       <button type="submit">Speichern</button>
     </form>
 
-    <div class="map">
-      <h2>Deutschlandkarte</h2>
-      <img src="deutschlandkarte.png" alt="Deutschlandkarte" style="width: 100%; border: 1px solid #ccc;" />
-    </div>
+  
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-o9N1jrvv2vUQckC7AXPo2jbaf9bgO1p2KQvuPA+0lEw="
+  crossorigin=""
+></script>
+
 
     <!-- Optional: Eine Leaflet-Karte (falls aktiv) -->
-    <div id="map" style="height: 400px;"></div>
+    
   </div>
 </body>
 </html>
