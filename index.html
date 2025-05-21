@@ -3,21 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Supabase Login App</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script type="module" src="script.js" defer></script>
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Logo" class="logo" />
-    <h1>Login</h1>
-    <form id="login-form">
-      <input type="email" id="email" placeholder="E-Mail" required />
-      <input type="password" id="password" placeholder="Passwort" required />
-      <button type="submit">Einloggen</button>
+    <h1>Willkommen!</h1>
+
+    <form id="info-form">
+      <label for="bundesland">Bundesland:</label>
+      <select id="bundesland">
+          <option value="">Bitte wählen</option>
+  <option value="Baden-Württemberg">Baden-Württemberg</option>
+  <option value="Bayern">Bayern</option>
+  <option value="Berlin">Berlin</option>
+  <option value="Brandenburg">Brandenburg</option>
+  <option value="Bremen">Bremen</option>
+  <option value="Hamburg">Hamburg</option>
+  <option value="Hessen">Hessen</option>
+  <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+  <option value="Niedersachsen">Niedersachsen</option>
+  <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+  <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+  <option value="Saarland">Saarland</option>
+  <option value="Sachsen">Sachsen</option>
+  <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+  <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+  <option value="Thüringen">Thüringen</option>
+        
+      </select>
+
+      <label for="klassenstufe">Klassenstufe:</label>
+      <input type="text" id="klassenstufe" placeholder="z. B. 10"/>
+
+      <label for="schulart">Schulart:</label>
+      <input type="text" id="schulart" placeholder="z. B. Gymnasium"/>
+
+      <label for="fach">Fach:</label>
+      <input type="text" id="fach" placeholder="z. B. Mathematik"/>
+
+      <label for="thema">Thema:</label>
+      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen"/>
+
+      <button type="submit">Speichern</button>
     </form>
-    <p id="message"></p>
+
+    <div class="map">
+      <h2>Deutschlandkarte</h2>
+      <img src="deutschlandkarte.png" alt="Deutschlandkarte" style="width: 100%; border: 1px solid #ccc;" />
+    </div>
   </div>
 </body>
 </html>
-
