@@ -31,6 +31,7 @@ loginForm.addEventListener('submit', async (e) => {
     email: email,
     password: password,
   });
+console.log('Login-Response:', error);
 
   if (error) {
     alert('Login fehlgeschlagen: ' + error.message);
