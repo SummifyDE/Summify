@@ -1,15 +1,15 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Schulstandort Eintrag</title>
 
-  <!-- CSS -->
+  <!-- Dein CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
   <!-- Leaflet CSS -->
   <link
@@ -37,22 +37,22 @@ DOCTYPE html>
   </header>
 
   <!-- Login-Bereich -->
-  <section id="login-view">
-    <form id="login-form" novalidate>
-      <input type="email" id="email" name="email" placeholder="E-Mail" required autocomplete="username" />
-      <input type="password" id="password" name="password" placeholder="Passwort" required autocomplete="current-password" />
+  <div id="login-view">
+    <form id="login-form">
+      <input type="email" id="email" placeholder="E-Mail" required />
+      <input type="password" id="password" placeholder="Passwort" required />
       <button type="submit">Anmelden</button>
     </form>
-  </section>
+  </div>
 
   <!-- App-Bereich, sichtbar nach Login -->
-  <section id="app-view" style="display: none;">
-    <button id="logout-btn" type="button">Abmelden</button>
+  <div id="app-view" style="display: none;">
+    <button id="logout-btn">Abmelden</button>
 
-    <form id="info-form" novalidate>
+    <form id="info-form">
       <label for="bundesland">Bundesland:</label>
-      <select id="bundesland" name="bundesland" required>
-        <option value="" disabled selected>Bitte wählen</option>
+      <select id="bundesland" required>
+        <option value="">Bitte wählen</option>
         <option value="Baden-Württemberg">Baden-Württemberg</option>
         <option value="Bayern">Bayern</option>
         <option value="Berlin">Berlin</option>
@@ -72,22 +72,23 @@ DOCTYPE html>
       </select>
 
       <label for="klassenstufe">Klassenstufe:</label>
-      <input type="text" id="klassenstufe" name="klassenstufe" placeholder="z. B. 10" required />
+      <input type="text" id="klassenstufe" placeholder="z. B. 10" />
 
       <label for="schulart">Schulart:</label>
-      <input type="text" id="schulart" name="schulart" placeholder="z. B. Gymnasium" required />
+      <input type="text" id="schulart" placeholder="z. B. Gymnasium" />
 
       <label for="fach">Fach:</label>
-      <input type="text" id="fach" name="fach" placeholder="z. B. Mathematik" required />
+      <input type="text" id="fach" placeholder="z. B. Mathematik" />
 
       <label for="thema">Thema:</label>
-      <input type="text" id="thema" name="thema" placeholder="z. B. Lineare Gleichungen" required />
+      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
+
+      <label for="beschreibung">Beschreibung / Inhalt:</label>
+      <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
 
       <!-- Versteckte Felder für Koordinaten -->
       <input type="hidden" id="latitude" name="latitude" />
       <input type="hidden" id="longitude" name="longitude" />
-
-      <p><small>Bitte klicken Sie auf die Karte, um den Standort zu markieren.</small></p>
 
       <button type="submit">Speichern</button>
     </form>
@@ -96,10 +97,8 @@ DOCTYPE html>
     <div
       id="map"
       style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px;"
-      role="region"
-      aria-label="Karte zur Auswahl des Schulstandorts"
-      tabindex="0"
     ></div>
-  </section>
+  </div>
 </body>
 </html>
+
