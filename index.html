@@ -72,20 +72,22 @@
       </select>
 
       <label for="klassenstufe">Klassenstufe:</label>
-      <input type="text" id="klassenstufe" placeholder="z. B. 10" />
+      <input type="text" id="klassenstufe" placeholder="z. B. 10" required />
 
       <label for="schulart">Schulart:</label>
-      <input type="text" id="schulart" placeholder="z. B. Gymnasium" />
+      <input type="text" id="schulart" placeholder="z. B. Gymnasium" required />
 
       <label for="fach">Fach:</label>
-      <input type="text" id="fach" placeholder="z. B. Mathematik" />
+      <input type="text" id="fach" placeholder="z. B. Mathematik" required />
 
       <label for="thema">Thema:</label>
-      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
+      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" required />
 
       <!-- Versteckte Felder für Koordinaten -->
       <input type="hidden" id="latitude" name="latitude" />
       <input type="hidden" id="longitude" name="longitude" />
+
+      <p><small>Bitte klicken Sie auf die Karte, um den Standort zu markieren.</small></p>
 
       <button type="submit">Speichern</button>
     </form>
@@ -98,4 +100,3 @@
   </div>
 </body>
 </html>
-
