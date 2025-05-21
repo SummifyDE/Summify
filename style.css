@@ -1,4 +1,4 @@
-/* Body-Stil */
+/* Body */
 body {
   margin: 0;
   padding: 0;
@@ -7,6 +7,7 @@ body {
   color: #ffffff;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 /* Logo oben rechts */
@@ -14,13 +15,13 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  width: 160px; /* noch größer */
+  width: 160px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Hauptcontainer zentriert */
+/* Hauptcontainer, zentriert horizontal und vertikal */
 .container {
   position: absolute;
   top: 50%;
@@ -28,35 +29,47 @@ body {
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  padding: 3rem;
+  padding: 3rem 2rem;
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 90%;
-  max-width: 420px;
+  max-width: 320px;
+  width: 100%;
   text-align: center;
   animation: fadeIn 0.6s ease-in-out;
+
+  /* Vertikale Mitte für Login und Dashboard */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  height: auto; /* passt sich Inhalt an */
+  min-height: 350px; /* sorgt für Höhe auf Login-Seite */
 }
 
-/* Überschrift über Formular */
+/* Überschrift zentriert und fett */
 .container h1 {
-  margin-bottom: 1.5rem;
+  margin: 0;
   font-size: 1.8rem;
+  font-weight: 700;
   color: #ffffff;
+  text-align: center;
 }
 
-/* Formular */
+/* Formular zentriert mit schmaleren Feldern */
 form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+  align-items: center;
 }
 
-/* Eingabefelder & Auswahlfelder */
+/* Eingabefelder & Selects: schmaler, zentriert */
 input,
 select {
-  width: 100%;
-  padding: 0.9rem;
+  width: 280px; /* schmaler */
+  max-width: 100%;
+  padding: 0.8rem;
   border: none;
   border-radius: 10px;
   background: #ffffff;
@@ -64,6 +77,7 @@ select {
   font-size: 1rem;
   outline: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 input::placeholder {
@@ -72,6 +86,8 @@ input::placeholder {
 
 /* Button */
 button {
+  width: 280px;
+  max-width: 100%;
   background: #ffffff;
   color: #007BFF;
   border: none;
@@ -81,7 +97,7 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 button:hover {
@@ -94,6 +110,7 @@ button:hover {
   margin-top: 1rem;
   font-weight: bold;
   font-size: 0.95rem;
+  color: #fff;
 }
 
 /* Karte im Dashboard */
@@ -115,4 +132,5 @@ button:hover {
     transform: translateY(0);
   }
 }
+
 
