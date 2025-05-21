@@ -1,56 +1,47 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #e6f0ff; /* hellblauer Hintergrund */
-  color: #003366; /* dunkles Blau für Text */
+  font-family: Arial, sans-serif;
+  background-color: #e6f0ff;
+  color: #003366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-header {
-  background-color: #004c99; /* kräftiges Blau */
-  color: white;
-  padding: 1em;
+.container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 51, 102, 0.2);
   text-align: center;
+  width: 300px;
 }
 
 .logo {
-  max-width: 150px;
-  margin-bottom: 10px;
+  width: 100px;
+  margin-bottom: 1rem;
 }
 
-form {
-  background-color: white;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 500px;
-  box-shadow: 0 0 10px rgba(0, 76, 153, 0.2); /* bläulicher Schatten */
-  border-left: 5px solid #0073e6;
-}
-
-form input,
-form select,
-form button {
+input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #99ccff;
-  border-radius: 4px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #003366;
+  border-radius: 5px;
 }
 
-form button {
-  background-color: #0073e6;
+button {
+  background-color: #007bff;
   color: white;
   border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-form button:hover {
-  background-color: #005bb5;
+button:hover {
+  background-color: #0056b3;
 }
 
-#map {
-  width: 90%;
-  height: 400px;
-  margin: 20px auto;
-  border: 2px solid #0073e6;
-}
