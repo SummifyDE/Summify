@@ -17,12 +17,17 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     password
   });
 
-  if (error) {
-    message.textContent = 'Fehler: ' + error.message;
-    message.style.color = 'red';
-  } else {
-    message.textContent = 'Erfolgreich eingeloggt!';
-    message.style.color = 'green';
-    console.log('User:', data.user);
-  }
+ if (error) {
+  message.textContent = 'Fehler: ' + error.message;
+  message.style.color = 'red';
+} else {
+  message.textContent = 'Erfolgreich eingeloggt!';
+  message.style.color = 'green';
+
+  // Weiterleitung nach Login
+  setTimeout(() => {
+    window.location.href = 'dashboard.html';
+  }, 1000);
+}
+
 });
