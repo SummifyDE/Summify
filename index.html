@@ -51,7 +51,7 @@
 
     <form id="info-form">
       <label for="bundesland">Bundesland:</label>
-      <select id="bundesland">
+      <select id="bundesland" required>
         <option value="">Bitte wählen</option>
         <option value="Baden-Württemberg">Baden-Württemberg</option>
         <option value="Bayern">Bayern</option>
@@ -82,6 +82,10 @@
 
       <label for="thema">Thema:</label>
       <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
+
+      <!-- Versteckte Felder für Koordinaten -->
+      <input type="hidden" id="latitude" name="latitude" />
+      <input type="hidden" id="longitude" name="longitude" />
 
       <button type="submit">Speichern</button>
     </form>
