@@ -3,34 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
+  <title>Schulstandort Eintrag</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Willkommen!</h1>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Daten eingeben</h1>
+  </header>
+
+  <!-- Login-Bereich -->
+  <div id="login-view">
+    <form id="login-form">
+      <input type="email" id="email" placeholder="E-Mail" required />
+      <input type="password" id="password" placeholder="Passwort" required />
+      <button type="submit">Anmelden</button>
+    </form>
+  </div>
+
+  <!-- App-Bereich, sichtbar nach Login -->
+  <div id="app-view" style="display: none;">
+    <button id="logout-btn">Abmelden</button>
 
     <form id="info-form">
       <label for="bundesland">Bundesland:</label>
       <select id="bundesland">
-          <option value="">Bitte wählen</option>
-  <option value="Baden-Württemberg">Baden-Württemberg</option>
-  <option value="Bayern">Bayern</option>
-  <option value="Berlin">Berlin</option>
-  <option value="Brandenburg">Brandenburg</option>
-  <option value="Bremen">Bremen</option>
-  <option value="Hamburg">Hamburg</option>
-  <option value="Hessen">Hessen</option>
-  <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
-  <option value="Niedersachsen">Niedersachsen</option>
-  <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
-  <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
-  <option value="Saarland">Saarland</option>
-  <option value="Sachsen">Sachsen</option>
-  <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
-  <option value="Schleswig-Holstein">Schleswig-Holstein</option>
-  <option value="Thüringen">Thüringen</option>
-        
+        <option value="">Bitte wählen</option>
+        <option value="Baden-Württemberg">Baden-Württemberg</option>
+        <option value="Bayern">Bayern</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Brandenburg">Brandenburg</option>
+        <option value="Bremen">Bremen</option>
+        <option value="Hamburg">Hamburg</option>
+        <option value="Hessen">Hessen</option>
+        <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+        <option value="Niedersachsen">Niedersachsen</option>
+        <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+        <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+        <option value="Saarland">Saarland</option>
+        <option value="Sachsen">Sachsen</option>
+        <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+        <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+        <option value="Thüringen">Thüringen</option>
       </select>
 
       <label for="klassenstufe">Klassenstufe:</label>
@@ -52,6 +70,9 @@
       <h2>Deutschlandkarte</h2>
       <img src="deutschlandkarte.png" alt="Deutschlandkarte" style="width: 100%; border: 1px solid #ccc;" />
     </div>
+
+    <!-- Optional: Eine Leaflet-Karte (falls aktiv) -->
+    <div id="map" style="height: 400px;"></div>
   </div>
 </body>
 </html>
