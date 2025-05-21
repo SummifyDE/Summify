@@ -4,22 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Schulstandort Eintrag</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+4DHH9G2s6hSR1iW0JzLPIrlxhe/j9UivkRF4wL8Q="
-  crossorigin=""
-/>
 
+  <!-- Dein CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+4DHH9G2s6hSR1iW0JzLPIrlxhe/j9UivkRF4wL8Q="
+    crossorigin=""
+  />
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1jrvv2vUQckC7AXPo2jbaf9bgO1p2KQvuPA+0lEw="
+    crossorigin=""
+    defer
+  ></script>
+
+  <!-- Dein Script -->
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo" class="logo">
+    <img src="logo.png" alt="Logo" class="logo" />
     <h1>Daten eingeben</h1>
   </header>
 
@@ -31,7 +44,6 @@
       <button type="submit">Anmelden</button>
     </form>
   </div>
-<div id="map" style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px; display: none;"></div>
 
   <!-- App-Bereich, sichtbar nach Login -->
   <div id="app-view" style="display: none;">
@@ -60,30 +72,25 @@
       </select>
 
       <label for="klassenstufe">Klassenstufe:</label>
-      <input type="text" id="klassenstufe" placeholder="z. B. 10"/>
+      <input type="text" id="klassenstufe" placeholder="z. B. 10" />
 
       <label for="schulart">Schulart:</label>
-      <input type="text" id="schulart" placeholder="z. B. Gymnasium"/>
+      <input type="text" id="schulart" placeholder="z. B. Gymnasium" />
 
       <label for="fach">Fach:</label>
-      <input type="text" id="fach" placeholder="z. B. Mathematik"/>
+      <input type="text" id="fach" placeholder="z. B. Mathematik" />
 
       <label for="thema">Thema:</label>
-      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen"/>
+      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
 
       <button type="submit">Speichern</button>
     </form>
 
-  
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-o9N1jrvv2vUQckC7AXPo2jbaf9bgO1p2KQvuPA+0lEw="
-  crossorigin=""
-></script>
-
-
-    <!-- Optional: Eine Leaflet-Karte (falls aktiv) -->
-    
+    <!-- Leaflet Karte -->
+    <div
+      id="map"
+      style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px;"
+    ></div>
   </div>
 </body>
 </html>
