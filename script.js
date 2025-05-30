@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const { data, error } = await supabase
-      .from('content') // Tabellenname in Supabase, anpassen falls anders
+      .from('schools') // Tabellenname in Supabase, anpassen falls anders
       .insert([
         {
           user_id: user.id,
