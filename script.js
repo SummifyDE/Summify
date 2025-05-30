@@ -1,6 +1,6 @@
 // === Supabase Konfiguration ===
 const SUPABASE_URL = 'https://lyioruosnltgowlxluon.supabase.co';        
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI';                   
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // gekürzt
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = document.getElementById('password').value;
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    console.log('Login-Response:', error);
-
     if (error) {
       alert('Login fehlgeschlagen: ' + error.message);
     } else {
@@ -49,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const latitude = parseFloat(document.getElementById('latitude').value) || null;
     const longitude = parseFloat(document.getElementById('longitude').value) || null;
 
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (userError || !user) {
       alert('Bitte zuerst anmelden!');
       return;
     }
@@ -87,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         map.removeLayer(currentMarker);
         currentMarker = null;
       }
+
       document.getElementById('latitude').value = '';
       document.getElementById('longitude').value = '';
     }
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function checkSession() {
   const { data, error } = await supabase.auth.getSession();
-  if (data && data.session) {
+  if (data?.session) {
     showApp();
   } else {
     showLogin();
@@ -108,20 +107,17 @@ function showApp() {
 
   if (!mapInitialized) {
     map = L.map('map').setView([51.1657, 10.4515], 6);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
 
     map.on('click', (e) => {
       const { lat, lng } = e.latlng;
-
       if (currentMarker) {
         map.removeLayer(currentMarker);
       }
 
       currentMarker = L.marker([lat, lng]).addTo(map);
-
       document.getElementById('latitude').value = lat.toFixed(6);
       document.getElementById('longitude').value = lng.toFixed(6);
     });
