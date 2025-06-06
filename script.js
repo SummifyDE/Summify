@@ -1,6 +1,6 @@
-// === Supabase Konfiguration ===Add commentMore actionsMore actions
-const SUPABASE_URL = 'https://lyioruosnltgowlxluon.supabase.co';        
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI'; // gekürzt
+// === Supabase Konfiguration ===
+const SUPABASE_URL = 'https://lyioruosnltgowlxluon.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5aW9ydW9zbmx0Z293bHhsdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMjQ0NjEsImV4cCI6MjA2MjgwMDQ2MX0.rC-3plAsVFX91nbxeDFVDUFYSzwCtBBkqoNBDVL5amI';
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const klasse = document.getElementById('klasse').value;
     const latitude = parseFloat(document.getElementById('latitude').value) || null;
     const longitude = parseFloat(document.getElementById('longitude').value) || null;
+    const fileInput = document.getElementById('file');
+    const file = fileInput?.files?.[0];
 
     const { data: { user }, error: userError } = await supabase.auth.getUser();
     if (userError || !user) {
@@ -64,6 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    let file_url = null;
+
+    // === Datei-Upload ===
+    if (file) {
+      const filePath = `${user.id}/${Date.now()}_${file.name}`;
+      const { error: uploadError } = await supabase.storage
+        .from('uploads')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        alert('Datei-Upload fehlgeschlagen: ' + uploadError.message);
+        return;
+      }
+
+      file_url = `${SUPABASE_URL}/storage/v1/object/public/uploads/${filePath}`;
+    }
+
     const { error } = await supabase
       .from('schools')
       .insert([{
@@ -74,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fach,
         klasse,
         latitude,
-        longitude
+        longitude,
+        file_url
       }]);
 
     if (error) {
@@ -82,12 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       alert('Schule erfolgreich gespeichert!');
       infoForm.reset();
-
       if (currentMarker) {
         map.removeLayer(currentMarker);
         currentMarker = null;
       }
-
       document.getElementById('latitude').value = '';
       document.getElementById('longitude').value = '';
     }
@@ -95,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function checkSession() {
-  const { data, error } = await supabase.auth.getSession();
+  const { data } = await supabase.auth.getSession();
   if (data?.session) {
     showApp();
   } else {
@@ -118,7 +136,6 @@ function showApp() {
       if (currentMarker) {
         map.removeLayer(currentMarker);
       }
-
       currentMarker = L.marker([lat, lng]).addTo(map);
       document.getElementById('latitude').value = lat.toFixed(6);
       document.getElementById('longitude').value = lng.toFixed(6);
