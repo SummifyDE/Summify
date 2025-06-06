@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ort = document.getElementById('ort').value;
     const schule = document.getElementById('schule').value;
     const fach = document.getElementById('fach').value;
+    const klasse = document.getElementById('klasse').value;
     const latitude = parseFloat(document.getElementById('latitude').value) || null;
     const longitude = parseFloat(document.getElementById('longitude').value) || null;
 
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ort,
         schule,
         fach,
+        klasse,
         latitude,
         longitude
       }]);
