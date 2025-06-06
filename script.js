@@ -37,98 +37,84 @@ document.addEventListener('DOMContentLoaded', () => {
     showLogin();
   });
 
-  infoForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+ infoForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    const bundesland = document.getElementById('bundesland').value;
-    const ort = document.getElementById('ort').value;
-    const schule = document.getElementById('schule').value;
-    const fach = document.getElementById('fach').value;
-    const klasse = document.getElementById('klasse').value;
-    const latitude = parseFloat(document.getElementById('latitude').value) || null;
-    const longitude = parseFloat(document.getElementById('longitude').value) || null;
+  const bundesland = document.getElementById('bundesland').value;
+  const ort = document.getElementById('ort').value;
+  const schule = document.getElementById('schule').value;
+  const fach = document.getElementById('fach').value;
+  const klasse = document.getElementById('klasse').value;
+  const latitude = parseFloat(document.getElementById('latitude').value) || null;
+  const longitude = parseFloat(document.getElementById('longitude').value) || null;
+  const fileInput = document.getElementById('file');
+  const file = fileInput.files[0];
 
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
-    if (userError || !user) {
-      alert('Bitte zuerst anmelden!');
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError || !user) {
+    alert('Bitte zuerst anmelden!');
+    return;
+  }
+
+  if (!bundesland) {
+    alert('Bitte Bundesland auswählen!');
+    return;
+  }
+
+  if (!schule.trim()) {
+    alert('Bitte Schulname eingeben!');
+    return;
+  }
+
+  let fileUrl = null;
+
+  if (file) {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}_${user.id}.${fileExt}`;
+    const { data, error: uploadError } = await supabase
+      .storage
+      .from('uploads') // Bucket-Name anpassen
+      .upload(fileName, file);
+
+    if (uploadError) {
+      alert('Datei konnte nicht hochgeladen werden: ' + uploadError.message);
       return;
     }
 
-    if (!bundesland) {
-      alert('Bitte Bundesland auswählen!');
-      return;
-    }
+    const { data: publicUrlData } = supabase
+      .storage
+      .from('uploads')
+      .getPublicUrl(fileName);
 
-    if (!schule.trim()) {
-      alert('Bitte Schulname eingeben!');
-      return;
-    }
+    fileUrl = publicUrlData.publicUrl;
+  }
 
-    const { error } = await supabase
-      .from('schools')
-      .insert([{
-        user_id: user.id,
-        bundesland,
-        ort,
-        schule,
-        fach,
-        klasse,
-        latitude,
-        longitude
-      }]);
+  const { error } = await supabase
+    .from('schools')
+    .insert([{
+      user_id: user.id,
+      bundesland,
+      ort,
+      schule,
+      fach,
+      klasse,
+      latitude,
+      longitude,
+      file_url: fileUrl
+    }]);
 
-    if (error) {
-      alert('Fehler beim Speichern: ' + error.message);
-    } else {
-      alert('Schule erfolgreich gespeichert!');
-      infoForm.reset();
-
-      if (currentMarker) {
-        map.removeLayer(currentMarker);
-        currentMarker = null;
-      }
-
-      document.getElementById('latitude').value = '';
-      document.getElementById('longitude').value = '';
-    }
-  });
-});
-
-async function checkSession() {
-  const { data, error } = await supabase.auth.getSession();
-  if (data?.session) {
-    showApp();
+  if (error) {
+    alert('Fehler beim Speichern: ' + error.message);
   } else {
-    showLogin();
+    alert('Schule erfolgreich gespeichert!');
+    infoForm.reset();
+
+    if (currentMarker) {
+      map.removeLayer(currentMarker);
+      currentMarker = null;
+    }
+
+    document.getElementById('latitude').value = '';
+    document.getElementById('longitude').value = '';
   }
-}
-
-function showApp() {
-  loginView.style.display = 'none';
-  appView.style.display = 'block';
-
-  if (!mapInitialized) {
-    map = L.map('map').setView([51.1657, 10.4515], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
-    }).addTo(map);
-
-    map.on('click', (e) => {
-      const { lat, lng } = e.latlng;
-      if (currentMarker) {
-        map.removeLayer(currentMarker);
-      }
-
-      currentMarker = L.marker([lat, lng]).addTo(map);
-      document.getElementById('latitude').value = lat.toFixed(6);
-      document.getElementById('longitude').value = lng.toFixed(6);
-    });
-
-    mapInitialized = true;
-  }
-}
-
-function showLogin() {
-  loginView.style.display = 'block';
-  appView.style.display = 'none';
-}
+});
