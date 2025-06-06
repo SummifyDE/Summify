@@ -49,49 +49,52 @@
   <div id="app-view" style="display: none;">
     <button id="logout-btn">Abmelden</button>
 
-    <form id="info-form">
-      <label for="bundesland">Bundesland:</label>
-      <select id="bundesland" required>
-        <option value="">Bitte wählen</option>
-        <option value="Baden-Württemberg">Baden-Württemberg</option>
-        <option value="Bayern">Bayern</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Brandenburg">Brandenburg</option>
-        <option value="Bremen">Bremen</option>
-        <option value="Hamburg">Hamburg</option>
-        <option value="Hessen">Hessen</option>
-        <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
-        <option value="Niedersachsen">Niedersachsen</option>
-        <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
-        <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
-        <option value="Saarland">Saarland</option>
-        <option value="Sachsen">Sachsen</option>
-        <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
-        <option value="Schleswig-Holstein">Schleswig-Holstein</option>
-        <option value="Thüringen">Thüringen</option>
-      </select>
+   <form id="info-form">
+  <label for="bundesland">Bundesland:</label>
+  <select id="bundesland" required>
+    <option value="">Bitte wählen</option>
+    <option value="Baden-Württemberg">Baden-Württemberg</option>
+    <option value="Bayern">Bayern</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Brandenburg">Brandenburg</option>
+    <option value="Bremen">Bremen</option>
+    <option value="Hamburg">Hamburg</option>
+    <option value="Hessen">Hessen</option>
+    <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+    <option value="Niedersachsen">Niedersachsen</option>
+    <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+    <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+    <option value="Saarland">Saarland</option>
+    <option value="Sachsen">Sachsen</option>
+    <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+    <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+    <option value="Thüringen">Thüringen</option>
+  </select>
 
-      <label for="klassenstufe">Klassenstufe:</label>
-      <input type="text" id="klassenstufe" placeholder="z. B. 10" />
+  <label for="ort">Ort:</label>
+  <input type="text" id="ort" placeholder="z. B. Berlin" />
 
-      <label for="schulart">Schulart:</label>
-      <input type="text" id="schulart" placeholder="z. B. Gymnasium" />
+  <label for="klassenstufe">Klassenstufe:</label>
+  <input type="text" id="klassenstufe" placeholder="z. B. 10" />
 
-      <label for="fach">Fach:</label>
-      <input type="text" id="fach" placeholder="z. B. Mathematik" />
+  <label for="schule">Schulart:</label>
+  <input type="text" id="schule" placeholder="z. B. Gymnasium" />
 
-      <label for="thema">Thema:</label>
-      <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
+  <label for="fach">Fach:</label>
+  <input type="text" id="fach" placeholder="z. B. Mathematik" />
 
-      <label for="beschreibung">Beschreibung / Inhalt:</label>
-      <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
+  <label for="thema">Thema:</label>
+  <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
 
-      <!-- Versteckte Felder für Koordinaten -->
-      <input type="hidden" id="latitude" name="latitude" />
-      <input type="hidden" id="longitude" name="longitude" />
+  <label for="beschreibung">Beschreibung / Inhalt:</label>
+  <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
 
-      <button type="submit">Speichern</button>
-    </form>
+  <input type="hidden" id="latitude" name="latitude" />
+  <input type="hidden" id="longitude" name="longitude" />
+
+  <button type="submit">Speichern</button>
+</form>
+
 
     <!-- Leaflet Karte -->
     <div
