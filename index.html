@@ -29,6 +29,18 @@
 
   <!-- Dein Script -->
   <script src="script.js" defer></script>
+
+  <style>
+    #werbeplakat {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 180px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -52,22 +64,7 @@
     <form id="info-form">
       <label for="bundesland">Bundesland:</label>
       <select id="bundesland" required>
-        <option value="">Bitte wählen</option>
-        <option value="Baden-Württemberg">Baden-Württemberg</option>
-        <option value="Bayern">Bayern</option>
-        <option value="Berlin">Berlin</option>
-        <option value="Brandenburg">Brandenburg</option>
-        <option value="Bremen">Bremen</option>
-        <option value="Hamburg">Hamburg</option>
-        <option value="Hessen">Hessen</option>
-        <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
-        <option value="Niedersachsen">Niedersachsen</option>
-        <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
-        <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
-        <option value="Saarland">Saarland</option>
-        <option value="Sachsen">Sachsen</option>
-        <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
-        <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+        <!-- ... Bundesländer ... -->
         <option value="Thüringen">Thüringen</option>
       </select>
 
@@ -89,11 +86,9 @@
       <label for="beschreibung">Beschreibung / Inhalt:</label>
       <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
 
-      <!-- Datei-Upload -->
       <label for="file">Datei (optional):</label>
       <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.docx,.txt" />
 
-      <!-- Versteckte Felder für Koordinaten -->
       <input type="hidden" id="latitude" name="latitude" />
       <input type="hidden" id="longitude" name="longitude" />
 
@@ -105,7 +100,11 @@
       id="map"
       style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px;"
     ></div>
+
+    <!-- Werbeplakat -->
+    <img id="werbeplakat" src="werbeplakat.png" alt="Schulmaterialien Werbung" />
   </div>
 </body>
+</html>
 </html>
 
