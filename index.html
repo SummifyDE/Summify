@@ -1,70 +1,77 @@
+<!DOCTYPE html>More actionsMore actions
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Schulstandort Eintrag</title>
-
-  <!-- Dein CSS -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+4DHH9G2s6hSR1iW0JzLPIrlxhe/j9UivkRF4wL8Q="
-    crossorigin=""
-  />
-
-  <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1jrvv2vUQckC7AXPo2jbaf9bgO1p2KQvuPA+0lEw="
-    crossorigin=""
-    defer
-  ></script>
-
-  <!-- Dein Script -->
-  <script src="script.js" defer></script>
-
-  <style>
-    #werbeplakat {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 180px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="logo.png" alt="Logo" class="logo" />
-    <h1>Daten eingeben</h1>
-  </header>
-
-  <!-- Login-Bereich -->
-  <div id="login-view">
-    <form id="login-form">
-      <input type="email" id="email" placeholder="E-Mail" required />
-      <input type="password" id="password" placeholder="Passwort" required />
-      <button type="submit">Anmelden</button>
-    </form>
-  </div>
-
-  <!-- App-Bereich, sichtbar nach Login -->
+@@ -49,52 +49,56 @@ <h1>Daten eingeben</h1>
   <div id="app-view" style="display: none;">
     <button id="logout-btn">Abmelden</button>
+
+   <form id="info-form">
+  <label for="bundesland">Bundesland:</label>
+  <select id="bundesland" required>
+    <option value="">Bitte wählen</option>
+    <option value="Baden-Württemberg">Baden-Württemberg</option>
+    <option value="Bayern">Bayern</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Brandenburg">Brandenburg</option>
+    <option value="Bremen">Bremen</option>
+    <option value="Hamburg">Hamburg</option>
+    <option value="Hessen">Hessen</option>
+    <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+    <option value="Niedersachsen">Niedersachsen</option>
+    <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+    <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+    <option value="Saarland">Saarland</option>
+    <option value="Sachsen">Sachsen</option>
+    <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+    <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+    <option value="Thüringen">Thüringen</option>
+  </select>
+
+  <label for="ort">Ort:</label>
+  <input type="text" id="ort" placeholder="z. B. Berlin" />
+
+  <label for="klasse">Klasse:</label>
+  <input type="text" id="klasse" placeholder="z. B. 10" />
+
+  <label for="schule">Schulart:</label>
+  <input type="text" id="schule" placeholder="z. B. Gymnasium" />
+
+  <label for="fach">Fach:</label>
+  <input type="text" id="fach" placeholder="z. B. Mathematik" />
+
+  <label for="thema">Thema:</label>
+  <input type="text" id="thema" placeholder="z. B. Lineare Gleichungen" />
+
+  <label for="beschreibung">Beschreibung / Inhalt:</label>
+  <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
+
+  <input type="hidden" id="latitude" name="latitude" />
+  <input type="hidden" id="longitude" name="longitude" />
+
+  <button type="submit">Speichern</button>
+</form>
 
     <form id="info-form">
       <label for="bundesland">Bundesland:</label>
       <select id="bundesland" required>
-        <!-- ... Bundesländer ... -->
+        <option value="">Bitte wählen</option>
+        <option value="Baden-Württemberg">Baden-Württemberg</option>
+        <option value="Bayern">Bayern</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Brandenburg">Brandenburg</option>
+        <option value="Bremen">Bremen</option>
+        <option value="Hamburg">Hamburg</option>
+        <option value="Hessen">Hessen</option>
+        <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+        <option value="Niedersachsen">Niedersachsen</option>
+        <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+        <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+        <option value="Saarland">Saarland</option>
+        <option value="Sachsen">Sachsen</option>
+        <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+        <option value="Schleswig-Holstein">Schleswig-Holstein</option>
         <option value="Thüringen">Thüringen</option>
       </select>
 
@@ -86,9 +93,11 @@
       <label for="beschreibung">Beschreibung / Inhalt:</label>
       <textarea id="beschreibung" placeholder="Hier deinen Schulstoff eingeben..." required></textarea>
 
+      <!-- Datei-Upload -->
       <label for="file">Datei (optional):</label>
       <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.docx,.txt" />
 
+      <!-- Versteckte Felder für Koordinaten -->
       <input type="hidden" id="latitude" name="latitude" />
       <input type="hidden" id="longitude" name="longitude" />
 
@@ -97,14 +106,5 @@
 
     <!-- Leaflet Karte -->
     <div
-      id="map"
-      style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 12px;"
-    ></div>
-
-    <!-- Werbeplakat -->
-    <img id="werbeplakat" src="werbeplakat.png" alt="Schulmaterialien Werbung" />
-  </div>
-</body>
-</html>
 </html>
 
